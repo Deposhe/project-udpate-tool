@@ -1,28 +1,23 @@
 
 #!/bin/sh
 
+## Shell Script Example
 
-PROJECT_PATH="unity_bridge.xcodeproj"
-LIBRARIES_GROUP="Libraries"
-CLASSES_GROUP="Classes"
-LIBIL2CPP_GROUP="libil2cpp"
+PROJECT_PATH="myProject.xcodeproj"
+GROUP_TO_ADD_1="Group1"
+GROUP_TO_ADD_2="Group2"
+GROUP_TO_REMOVE_1="Group3"
 
 set -e
 
-# remove Libraries group reference
-ruby -r "./Scripts/scan.rb" -e "remove_group_reference '$PROJECT_PATH', '$LIBRARIES_GROUP'"
-
-# remove Classes group reference
-ruby -r "./Scripts/scan.rb" -e "remove_group_reference '$PROJECT_PATH', '$CLASSES_GROUP'"
-
-# add Libraries group reference
-ruby -r "./Scripts/scan.rb" -e "add_group_to_project '$PROJECT_PATH', '$LIBRARIES_GROUP'"
+# add First group reference to project
+ruby -r "./Scripts/scan.rb" -e "add_group_to_project '$PROJECT_PATH', '$GROUP_TO_ADD_1'"
 
 # add Classes group reference
-ruby -r "./Scripts/scan.rb" -e "add_group_to_project '$PROJECT_PATH', '$CLASSES_GROUP'"
+ruby -r "./Scripts/scan.rb" -e "add_group_to_project '$PROJECT_PATH', '$GROUP_TO_ADD_2'"
 
-# remove libil2cpp group reference
-ruby -r "./Scripts/scan.rb" -e "remove_group_reference '$PROJECT_PATH', '$LIBIL2CPP_GROUP'"
+# remove Third group reference
+ruby -r "./Scripts/scan.rb" -e "remove_group_reference '$PROJECT_PATH', '$GROUP_TO_REMOVE_1'"
 
 echo "readdProjectFiles completed"
 
